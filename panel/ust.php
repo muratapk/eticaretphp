@@ -160,6 +160,21 @@
                   </a>
                 </li>
                 <li class="menu-item">
+                  <a href="main.php?page=Categories" class="menu-link">
+                    <div data-i18n="Without menu">Kategoriler</div>
+                  </a>
+                </li>
+                 <li class="menu-item">
+                  <a href="main.php?page=Restaurants" class="menu-link">
+                    <div data-i18n="Without menu">Restaurantlar</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="main.php?page=Products" class="menu-link">
+                    <div data-i18n="Without menu">Ürünler</div>
+                  </a>
+                </li>
+                <li class="menu-item">
                   <a href="layouts-without-navbar.html" class="menu-link">
                     <div data-i18n="Without navbar">Without navbar</div>
                   </a>
