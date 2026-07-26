@@ -142,7 +142,7 @@
             <li class="menu-item">
               <a href="index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics"><?php echo $_COOKIE['kullanici']; ?> Dashboard</div>
+                <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
 
@@ -571,9 +571,9 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="auth-login-basic.html">
+                      <a class="dropdown-item" href="guvenli.php">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Güvenli Çıkış</span>
                       </a>
                     </li>
                   </ul>
