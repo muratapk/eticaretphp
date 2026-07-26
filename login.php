@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="mb-3 form-check">
-                            <input class="form-check-input" type="checkbox" id="beniHatirla">
+                            <input class="form-check-input" name="beniHatirla" type="checkbox" id="beniHatirla">
                             <label class="form-check-label" for="beniHatirla">
                                 Beni Hatırla
                             </label>
