@@ -88,5 +88,33 @@
 <!-- Main js -->
 <script src="js/main.js"></script>
 </body>
+<script>
+$(document).ready(function() {
+
+    document.querySelectorAll(".sepet").forEach(function(btn) {
+
+        btn.addEventListener("click", function() {
+
+            let productId = this.getAttribute("data-id");
+            $.ajax({
+                url: 'sepet.php',
+                type: 'post',
+                data: {
+                    Id: productId
+                },
+                success: function(data) {
+                    alert(data);
+                }
+            });
+            u
+        });
+
+    });
+
+
+
+
+});
+</script>
 
 </html>

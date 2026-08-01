@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 18 Tem 2026, 14:37:19
+-- Üretim Zamanı: 01 Ağu 2026, 14:32:02
 -- Sunucu sürümü: 10.4.32-MariaDB
 -- PHP Sürümü: 8.0.30
 
@@ -54,10 +54,21 @@ CREATE TABLE `cart_items` (
 --
 
 CREATE TABLE `categories` (
-  `Category_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `SubCategory` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+--
+-- Tablo döküm verisi `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `SubCategory`) VALUES
+(1, 'Bay', 0),
+(2, 'Bayan', 0),
+(7, 'Çocuk', 1),
+(8, 'Etek', 2),
+(9, 'Ayakkabı', 0);
 
 -- --------------------------------------------------------
 
@@ -184,6 +195,14 @@ CREATE TABLE `products` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
 
+--
+-- Tablo döküm verisi `products`
+--
+
+INSERT INTO `products` (`id`, `restaurant_id`, `category_id`, `name`, `description`, `price`, `image_url`, `is_available`, `created_at`) VALUES
+(2, 1, 9, 'kurs', '', 10.00, '../Product_Images/6a5ce27c265eb.png', 1, '2026-07-19 14:43:08'),
+(3, 1, 2, 'Çocuk', 'sadfas', 20.00, '../Product_Images/6a5ce315392f7.png', 1, '2026-07-19 14:45:41');
+
 -- --------------------------------------------------------
 
 --
@@ -222,6 +241,13 @@ CREATE TABLE `restaurants` (
   `is_active` tinyint(1) DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
+--
+-- Tablo döküm verisi `restaurants`
+--
+
+INSERT INTO `restaurants` (`id`, `owner_id`, `name`, `description`, `phone`, `email`, `address`, `city`, `district`, `latitude`, `longitude`, `minimum_order_amount`, `delivery_fee`, `rating`, `is_open`, `is_active`, `created_at`) VALUES
+(1, 1, 'Muratapk2', 'asdf', '0(850) 885 05 35', 'saitgungor@gmail.com', 'sadfs', 'Ümraniye,İstanbul, Türkiye', 'Ümraniye', 41.00000000, 28.00000000, 100.00, 5.00, 0.00, 1, 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -276,7 +302,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `phone`, `password_hash`, `role`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Murat', 'Çıplak', 'muratapk', '505', '', 'customer', 1, '2026-06-14 14:24:07', '2026-06-14 14:24:07');
+(1, 'Murat', 'Çıplak', 'muratapk', '505', '', 'customer', 1, '2026-06-14 14:24:07', '2026-06-14 14:24:07'),
+(2, 'muratkac', 'Damlakhi', 'saitgungor@gmail.com', '0(850) 885 05 35', 'e10adc3949ba59abbe56e057f20f883e', 'customer', 1, '0000-00-00 00:00:00', '2026-07-26 13:44:30'),
+(5, 'muratkac2', 'Damlakhi2', 'saitgungor2@gmail.com', '0(850) 885 05 36', 'e10adc3949ba59abbe56e057f20f883e', 'customer', 1, '2026-07-26 12:46:38', '2026-07-26 13:46:38'),
+(6, 'muratkac2', 'Damlakhi2', 'saitgungor3@gmail.com', '0(850) 885 05 37', 'e10adc3949ba59abbe56e057f20f883e', 'customer', 1, '2026-07-26 12:48:17', '2026-07-26 13:48:17'),
+(7, 'Fatih', 'Damlakhi', 'ogz91@gmail.com', '905551541174', 'e10adc3949ba59abbe56e057f20f883e', 'customer', 1, '2026-07-26 13:01:56', '2026-07-26 14:01:56'),
+(9, 'Efe', 'can', 'can@gmail.com', '5054421522', 'e10adc3949ba59abbe56e057f20f883e', 'customer', 1, '2026-08-01 11:21:13', '2026-08-01 12:21:13');
 
 -- --------------------------------------------------------
 
@@ -320,7 +351,7 @@ ALTER TABLE `cart_items`
 -- Tablo için indeksler `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`Category_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `coupons`
@@ -448,7 +479,7 @@ ALTER TABLE `cart_items`
 -- Tablo için AUTO_INCREMENT değeri `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `Category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `coupons`
@@ -496,7 +527,7 @@ ALTER TABLE `payments`
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_options`
@@ -508,7 +539,7 @@ ALTER TABLE `product_options`
 -- Tablo için AUTO_INCREMENT değeri `restaurants`
 --
 ALTER TABLE `restaurants`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `restaurant_working_hours`
@@ -526,7 +557,7 @@ ALTER TABLE `reviews`
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `user_addresses`
@@ -596,8 +627,7 @@ ALTER TABLE `payments`
 -- Tablo kısıtlamaları `products`
 --
 ALTER TABLE `products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`),
-  ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `menu_categories` (`id`);
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`);
 
 --
 -- Tablo kısıtlamaları `product_options`

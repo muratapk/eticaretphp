@@ -27,7 +27,7 @@
         <div class="row g-4" id="mgrid">
 
             <?php
-            $sql = "SELECT categories.name as kategoriad,products.name, products.image_url,
+            $sql = "SELECT products.id as urunId,categories.name as kategoriad,products.name, products.image_url,
             products.description,products.price,categories.SubCategory         
             FROM categories inner join products on categories.id=products.category_id";
 
@@ -44,8 +44,9 @@
                 <div class="mcard" data-img="Product_Images/<?php echo $urun['image_url']; ?>"
                     data-title="<?php echo $urun['name']; ?>" data-cat="<?php echo $urun['kategoriad']; ?>"
                     data-price="<?php echo $urun['price']; ?>" data-old="<?php echo $urun['price']; ?>"
-                    data-rating="4.9" data-reviews="128" data-cal="620" data-time="12"
-                    data-desc="<?php echo $urun['description']; ?>" data-tags="Spicy,Bestseller,Beef">
+                    data-rating="4.9" data-reviews="128" data-product="<?php echo $urun['urunId']; ?>" data-cal="620"
+                    data-time="12" data-desc="<?php echo $urun['description']; ?>" data-tags="Spicy,Bestseller,Beef">
+
                     <div class="mimg">
                         <img src="Product_Images/<?php echo $urun['image_url']; ?>"
                             alt="<?php echo $urun['name']; ?>" />
@@ -68,6 +69,8 @@
                                         style="color:#bbb;font-size:.7rem;">(128)</span></div>
                             </div>
                             <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
+                            <button class="madd sepet" data-id="<?php echo $urun['urunId'];?>" title=" View Details"><i
+                                    class="fa-solid fa-basket-shopping"></i></button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +90,7 @@
 
         </div>
         <!-- end #mgrid -->
-        <div class="text-center mt-5"><a href="#" class="btn-red"><i class="fas fa-th-large"></i>View
+        <div class=" text-center mt-5"><a href="#" class="btn-red"><i class="fas fa-th-large"></i>View
                 Full
                 Menu</a>
         </div>
