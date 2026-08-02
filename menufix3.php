@@ -69,8 +69,9 @@
                                         style="color:#bbb;font-size:.7rem;">(128)</span></div>
                             </div>
                             <button class="madd" title="View Details"><i class="fas fa-plus"></i></button>
-                            <button class="madd sepet" data-id="<?php echo $urun['urunId'];?>" title=" View Details"><i
-                                    class="fa-solid fa-basket-shopping"></i></button>
+                            <button class="madd sepet"
+                                data-id="<?php echo $urun['urunId']; ?>-<?php echo $urun['price']; ?>"
+                                title=" View Details"><i class="fa-solid fa-basket-shopping"></i></button>
                         </div>
                     </div>
                 </div>

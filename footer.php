@@ -103,10 +103,18 @@ $(document).ready(function() {
                     Id: productId
                 },
                 success: function(data) {
-                    alert(data);
+                    // alert(data);
+                    if (data == 1) {
+                        alert("Sepette Eklendi...")
+
+                    } else {
+                        window.location.href = "kullanici.php";
+                    }
+
                 }
+
             });
-            u
+
         });
 
     });

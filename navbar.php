@@ -25,9 +25,9 @@
             <div class="d-flex align-items-center gap-1">
                 <!-- FIX 1: Search button -->
                 <button id="navSearchBtn" title="Search"><i class="fas fa-search"></i></button>
-                <a href="kullanici.php" class="nav-link nav-cta"><i class="fas fa-shopping-bag me-1"></i> Girişi</a>
-                <a href="kullanici_kayit.php" class="nav-link nav-cta"><i class="fas fa-shopping-bag me-1"></i>Kayıt
-                    Ol</a>
+                <?php require_once("sepet_liste.php"); ?>
+                <a href="kullanici.php" class="nav-link nav-cta"><i class="fa-solid fa-user"></i></a>
+                <a href="kullanici_kayit.php" class="nav-link nav-cta"><i class="fa-solid fa-registered"></i></a>
             </div>
         </div>
     </div>
