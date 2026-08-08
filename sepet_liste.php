@@ -33,5 +33,5 @@ if (isset($_SESSION['email'])) {
     $toplamUrun = 0;
 }
 
-?> <a href="kullanici_kayit.php" class="nav-link nav-cta"><i
+?> <a href="sepet_toplam.php" class="nav-link nav-cta"><i
         class="fas fa-shopping-bag me-1"></i><?php echo $toplamUrun; ?></a>
