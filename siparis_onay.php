@@ -1,127 +1,10 @@
-```html
-<script>
-function completeOrder() {
-
-    // Sepet boşsa gönderme
-    if (!cart || cart.length === 0) {
-
-        alert("Sepetiniz boş.");
-        return;
-    }
-
-
-    // AJAX ile gönderilecek veriyi hazırla
-    const orderData = cart.map(product => {
-
-        return {
-            id: product.id,
-            quantity: Number(product.quantity)
-        };
-
-    });
-
-
-    // Butonu geçici olarak pasifleştir
-    const button = document.querySelector(
-        'button[onclick="completeOrder()"]'
-    );
-
-    if (button) {
-        button.disabled = true;
-        button.innerHTML = `
-            <span class="spinner-border spinner-border-sm me-2"></span>
-            İşleniyor...
-        `;
-    }
-
-
-    // AJAX
-    fetch("siparis_onayla.php", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                cart: orderData
-            })
-
-        })
-
-        .then(response => {
-
-            if (!response.ok) {
-                throw new Error("Sunucu hatası: " + response.status);
-            }
-
-            return response.json();
-
-        })
-
-        .then(data => {
-
-            console.log("Sunucu cevabı:", data);
-
-
-            if (data.success) {
-
-                // Sipariş başarılı
-                window.location.href =
-                    "siparis-basarili.php?order_id=" +
-                    encodeURIComponent(data.order_id);
-
-            } else {
-
-                alert(
-                    data.message ||
-                    "Sipariş oluşturulurken bir hata oluştu."
-                );
-
-                // Butonu tekrar aktif et
-                if (button) {
-                    button.disabled = false;
-                    button.innerHTML = "Siparişi Tamamla";
-                }
-
-            }
-
-        })
-
-        .catch(error => {
-
-            console.error("AJAX Hatası:", error);
-
-            alert(
-                "Sipariş gönderilirken bir hata oluştu."
-            );
-
-            // Butonu tekrar aktif et
-            if (button) {
-                button.disabled = false;
-                button.innerHTML = "Siparişi Tamamla";
-            }
-
-        });
-
-}
-</script>
-```
-
-### `siparis_onayla.php`
-
-PHP tarafında JSON verisini şu şekilde alabilirsin:
-
-```php
 <?php
+include_once("config/settings.php");
 
-header('Content-Type: application/json; charset=utf-8');
-
-session_start();
-
-require_once 'db.php';
-
+include_once("header.php");
+include_once("topbar.php");
+include_once("navbar.php");
+include_once("searchov.php");
 try {
 
     // JavaScript'ten gelen JSON
@@ -193,8 +76,8 @@ try {
 
     foreach ($cart as $item) {
 
-        $product_id = (int)$item['id'];
-        $quantity = (int)$item['quantity'];
+        $product_id = (int) $item['id'];
+        $quantity = (int) $item['quantity'];
 
 
         // Adet kontrolü
@@ -234,7 +117,7 @@ try {
         }
 
 
-        $unit_price = (float)$product['unit_price'];
+        $unit_price = (float) $product['unit_price'];
 
         $product_total =
             $unit_price * $quantity;
@@ -259,8 +142,8 @@ try {
      */
     $shipping =
         ($subtotal >= 1000)
-            ? 0
-            : 49.90;
+        ? 0
+        : 49.90;
 
 
     /*
@@ -268,8 +151,8 @@ try {
      */
     $discount =
         ($subtotal >= 5000)
-            ? $subtotal * 0.10
-            : 0;
+        ? $subtotal * 0.10
+        : 0;
 
 
     /*
@@ -441,5 +324,6 @@ try {
     ]);
 
 }
+
+include_once("footer.php");
 ?>
-```

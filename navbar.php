@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg" id="nav">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.php">
             <div class="blogo">
                 <div class="bico"><i class="fas fa-utensils"></i></div>
                 <div>

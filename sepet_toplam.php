@@ -426,6 +426,103 @@ function completeOrder() {
 
     alert("Siparişiniz başarıyla oluşturuldu!");
 
+    // AJAX ile gönderilecek veriyi hazırla
+    const orderData = cart.map(product => {
+
+        return {
+            id: product.id,
+            quantity: Number(product.quantity)
+        };
+
+    });
+
+
+    // Butonu geçici olarak pasifleştir
+    const button = document.querySelector(
+        'button[onclick="completeOrder()"]'
+    );
+
+    if (button) {
+        button.disabled = true;
+        button.innerHTML = `
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            İşleniyor...
+        `;
+    }
+
+
+    // AJAX
+    fetch("siparis_onayla.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                cart: orderData
+            })
+
+        })
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error("Sunucu hatası: " + response.status);
+            }
+
+            return response.json();
+
+        })
+
+        .then(data => {
+
+            console.log("Sunucu cevabı:", data);
+
+
+            if (data.success) {
+
+                // Sipariş başarılı
+                window.location.href =
+                    "siparis-basarili.php?order_id=" +
+                    encodeURIComponent(data.order_id);
+
+            } else {
+
+                alert(
+                    data.message ||
+                    "Sipariş oluşturulurken bir hata oluştu."
+                );
+
+                // Butonu tekrar aktif et
+                if (button) {
+                    button.disabled = false;
+                    button.innerHTML = "Siparişi Tamamla";
+                }
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error("AJAX Hatası:", error);
+
+            alert(
+                "Sipariş gönderilirken bir hata oluştu."
+            );
+
+            // Butonu tekrar aktif et
+            if (button) {
+                button.disabled = false;
+                button.innerHTML = "Siparişi Tamamla";
+            }
+
+        });
+
+
+
 }
 
 
