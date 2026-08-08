@@ -67,8 +67,8 @@ try {
         SELECT
             id,
             name,
-            unit_price,
-            stock
+            price,
+            image_url
         FROM products
         WHERE id = ?
     ");

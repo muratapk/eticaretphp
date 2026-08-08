@@ -452,7 +452,7 @@ function completeOrder() {
 
 
     // AJAX
-    fetch("siparis_onayla.php", {
+    fetch("siparis_onay.php", {
 
             method: "POST",
 

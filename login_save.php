@@ -15,7 +15,7 @@ if ($uye) {
         setcookie("kullanici", "", time() - 3600, "/");
     }
     $_SESSION['email'] = $email;
-
+    $_SESSION['user_id'] = $uye['id'];
 
     header("Refresh:2;url=panel/index.php");
 
